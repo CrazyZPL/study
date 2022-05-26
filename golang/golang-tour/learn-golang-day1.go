@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
+	// "math"
 	// "strings"
 )
 
@@ -213,21 +213,51 @@ import (
 // }
 
 // pointer receivers, a pointer receiver can change the value from its original. If not, the original value cannot be changed.
-type Vertex struct {
-	X, Y float64
-}
+// type Vertex struct {
+// 	X, Y float64
+// }
+// func (v Vertex) Abs() float64 {
+// 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+// }
+// func (v *Vertex) Scale(f float64) {
+// 	v.X = v.X * f
+// 	v.Y = v.Y * f
+// }
+// func main() {
+// 	v := Vertex{3, 4}
+// 	v.Scale(10)
+// 	fmt.Println(v.Abs())
+// }
 
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
+// // interface. When dealing with a struct, we need to take a measure to prevent a nil struct condition.
+// type I interface {
+// 	M()
+// }
+// type T struct {
+// 	S string
+// }
+// // This method means type T implements the interface I,
+// // but we don't need to explicitly declare that it does so.
+// func (t T) M() {
+// 	fmt.Println(t.S)
+// }
+// func main() {
+// 	var i I = T{"hello"}
+// 	i.M()
+// }
 
-func (v *Vertex) Scale(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
-}
-
+// empty interface
 func main() {
-	v := Vertex{3, 4}
-	v.Scale(10)
-	fmt.Println(v.Abs())
+	var i interface{}
+	describe(i)
+
+	i = 42
+	describe(i)
+
+	i = "hello"
+	describe(i)
+}
+
+func describe(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
