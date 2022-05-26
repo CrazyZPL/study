@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
+	// "math"
 	// "strings"
 )
 
@@ -150,15 +150,49 @@ import (
 // }
 
 // function values
-func compute(f func(float64, float64) float64) float64 {
-	return f(3, 4)
+// func compute(f func(float64, float64) float64) float64 {
+// 	return f(3, 4)
+// }
+// func main() {
+// 	hypot := func(x, y float64) float64 {
+// 		return math.Sqrt(x*x + y*y)
+// 	}
+// 	fmt.Println(hypot(5, 12))
+// 	fmt.Println(compute(hypot))
+// 	fmt.Println(compute(math.Pow))
+// }
+
+// function closures
+// func adder() func(int) int {
+// 	sum := 0
+// 	return func(x int) int {
+// 		sum += x
+// 		return sum
+// 	}
+// }
+// func main() {
+// 	pos, neg := adder(), adder()
+// 	for i := 0; i < 10; i++ {
+// 		fmt.Println(
+// 			pos(i),
+// 			neg(-2*i),
+// 		)
+// 	}
+// }
+
+// golang fibonacci
+func fibonacci() func() int {
+	num1, num2 := 0, 1
+	return func() int {
+		result := num1
+		num1, num2 = num2, (num1 + num2)
+		return result
+	}
 }
 
 func main() {
-	hypot := func(x, y float64) float64 {
-		return math.Sqrt(x*x + y*y)
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
 	}
-	fmt.Println(hypot(5, 12))
-	fmt.Println(compute(hypot))
-	fmt.Println(compute(math.Pow))
 }
