@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// "math"
+	"math"
 	// "strings"
 )
 
@@ -197,19 +197,37 @@ import (
 // }
 
 //function methods
-type Person struct {
-	Name string
-	Age  int32
+// type Person struct {
+// 	Name string
+// 	Age  int32
+// }
+// func (p Person) WhoAreYou() {
+// 	fmt.Printf("My name is %v and I am %v years old\n", p.Name, p.Age)
+// }
+// func main() {
+// 	p := Person{
+// 		Name: "zpl",
+// 		Age:  23,
+// 	}
+// 	p.WhoAreYou()
+// }
+
+// pointer receivers, a pointer receiver can change the value from its original. If not, the original value cannot be changed.
+type Vertex struct {
+	X, Y float64
 }
 
-func (p Person) WhoAreYou() {
-	fmt.Printf("My name is %v and I am %v years old\n", p.Name, p.Age)
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
 }
 
 func main() {
-	p := Person{
-		Name: "zpl",
-		Age:  23,
-	}
-	p.WhoAreYou()
+	v := Vertex{3, 4}
+	v.Scale(10)
+	fmt.Println(v.Abs())
 }
