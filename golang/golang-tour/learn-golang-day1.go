@@ -181,18 +181,35 @@ import (
 // }
 
 // golang fibonacci
-func fibonacci() func() int {
-	num1, num2 := 0, 1
-	return func() int {
-		result := num1
-		num1, num2 = num2, (num1 + num2)
-		return result
-	}
+// func fibonacci() func() int {
+// 	num1, num2 := 0, 1
+// 	return func() int {
+// 		result := num1
+// 		num1, num2 = num2, (num1 + num2)
+// 		return result
+// 	}
+// }
+// func main() {
+// 	f := fibonacci()
+// 	for i := 0; i < 10; i++ {
+// 		fmt.Println(f())
+// 	}
+// }
+
+//function methods
+type Person struct {
+	Name string
+	Age  int32
+}
+
+func (p Person) WhoAreYou() {
+	fmt.Printf("My name is %v and I am %v years old\n", p.Name, p.Age)
 }
 
 func main() {
-	f := fibonacci()
-	for i := 0; i < 10; i++ {
-		fmt.Println(f())
+	p := Person{
+		Name: "zpl",
+		Age:  23,
 	}
+	p.WhoAreYou()
 }
