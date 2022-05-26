@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	// "math"
-	"strings"
+	"math"
+	// "strings"
 )
 
 // for .. range...
@@ -130,22 +130,35 @@ import (
 // }
 
 // map
-type Vertex struct {
-	Lat, Long float64
+// type Vertex struct {
+// 	Lat, Long float64
+// }
+// func main() {
+// 	m := make(map[string]Vertex)
+// 	m["Bell Labs"] = Vertex{
+// 		40.1, -74.3,
+// 	}
+// 	fmt.Println(m, m["Bell Labs"])
+// }
+// func WordCount(s string) map[string]int {
+// 	strings := strings.Fields(s)
+// 	WordsCount := make(map[string]int)
+// 	for _, v := range strings {
+// 		WordsCount[v] += 1
+// 	}
+// 	return WordsCount
+// }
+
+// function values
+func compute(f func(float64, float64) float64) float64 {
+	return f(3, 4)
 }
 
 func main() {
-	m := make(map[string]Vertex)
-	m["Bell Labs"] = Vertex{
-		40.1, -74.3,
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
 	}
-	fmt.Println(m, m["Bell Labs"])
-}
-func WordCount(s string) map[string]int {
-	strings := strings.Fields(s)
-	WordsCount := make(map[string]int)
-	for _, v := range strings {
-		WordsCount[v] += 1
-	}
-	return WordsCount
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
 }
