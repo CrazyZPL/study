@@ -10,11 +10,23 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name:  "boom",
-		Usage: "make an explosive entrance",
-		Action: func(c *cli.Context) error {
-			fmt.Println("boom! I say!")
-			return nil
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:    "token",
+				Aliases: []string{"t"},
+				Value:   "",
+				Usage:   "The token of your telegram bot",
+			},
+		},
+		Commands: []*cli.Command{
+			{
+				Name:  "run",
+				Usage: "run this app",
+				Action: func(c *cli.Context) error {
+					fmt.Println(c.String("token"))
+					return nil
+				},
+			},
 		},
 	}
 
